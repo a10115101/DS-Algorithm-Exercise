@@ -23,36 +23,166 @@
 // linearSearch(numbers, 24);
 
 // 2) Binary Search
-let numbers = [
-  9, 12, 15, 18, 19, 20, 22, 25, 26, 26, 33, 37, 38, 41, 47, 47, 50, 55, 57, 60,
-  68, 80, 87, 90, 98, 100, 103, 108, 109, 109, 116, 120, 120, 124, 127, 128,
-  131, 135, 135, 139, 143, 145, 151, 155, 156, 158, 163, 164, 165, 169, 169,
-  173, 174, 176, 177, 178, 181, 182, 182, 183, 184, 189, 192, 195, 200, 201,
-  203, 204, 207, 213, 217, 222, 222, 222, 227, 228, 233, 235, 237, 239, 239,
-  243, 248, 251, 252, 257, 260, 260, 263, 268, 270, 271, 271, 276, 281, 284,
-  285, 295, 297, 298,
-];
+// const numbers = [
+//   9, 12, 15, 18, 19, 20, 22, 25, 26, 26, 33, 37, 38, 41, 47, 47, 50, 55, 57, 60,
+//   68, 80, 87, 90, 98, 100, 103, 108, 109, 109, 116, 120, 120, 124, 127, 128,
+//   131, 135, 135, 139, 143, 145, 151, 155, 156, 158, 163, 164, 165, 169, 169,
+//   173, 174, 176, 177, 178, 181, 182, 182, 183, 184, 189, 192, 195, 200, 201,
+//   203, 204, 207, 213, 217, 222, 222, 222, 227, 228, 233, 235, 237, 239, 239,
+//   243, 248, 251, 252, 257, 260, 260, 263, 268, 270, 271, 271, 276, 281, 284,
+//   285, 295, 297, 298,
+// ];
 
-const binarySearch = (arr, n) => {
-  let min = 0;
-  let max = arr.length - 1;
-  let middle;
-  let step = 0;
+// const binarySearch = (arr, n) => {
+//   let min = 0;
+//   let max = arr.length - 1;
+//   let middle;
+//   let step = 0;
 
-  while (min <= max) {
-    step++;
-    middle = Math.floor((min + max) / 2);
-    if (n > arr[middle]) min = middle + 1;
-    if (n < arr[middle]) max = middle - 1;
-    if (n === arr[middle]) {
-      console.log(`Find ${n} at index ${middle}`);
-      console.log(`Find ${n} after ${step} steps`);
-      return middle;
+//   while (min <= max) {
+//     step++;
+//     middle = Math.floor((min + max) / 2);
+//     if (n > arr[middle]) min = middle + 1;
+//     if (n < arr[middle]) max = middle - 1;
+//     if (n === arr[middle]) {
+//       console.log(`Find ${n} at index ${middle}`);
+//       console.log(`Find ${n} after ${step} steps`);
+//       return middle;
+//     }
+//   }
+
+//   console.log(`Can't find ${n}`);
+//   return -1;
+// };
+
+// binarySearch(numbers, 213);
+
+// 3) Intersection
+// const arr1 = [1, 2, 3, 7, 9, 19, 25];
+// const arr2 = [19, 5, 16, 10, 3, 1];
+
+// const intersection = (arr1, arr2) => {
+//   let result = [];
+
+//   for (let i = 0; i < arr1.length; i++) {
+//     for (let j = 0; j < arr2.length; j++) {
+//       if (arr1[i] === arr2[j]) result.push(arr1[i]);
+//     }
+//   }
+
+//   console.log(result);
+//   return result;
+// };
+
+// // O(n^2)
+// intersection(arr1, arr2);
+
+// 3) Intersection (by counter)
+// const arr1 = [1, 2, 3, 7, 9, 19, 25];
+// const arr2 = [19, 5, 16, 10, 3, 1];
+
+// const intersection = (arr1, arr2) => {
+//   let result = [];
+//   let arr3 = [...arr1, ...arr2];
+//   let counter = {};
+
+//   for (i = 0; i < arr3.length; i++) {
+//     if (!counter[arr3[i]]) {
+//       counter[arr3[i]] = 1;
+//     } else {
+//       counter[arr3[i]]++;
+//     }
+//   }
+
+//   for (let prop in counter) {
+//     if (counter[prop] > 1) result.push(prop);
+//   }
+
+//   console.log(result);
+//   return result;
+// };
+
+// intersection(arr1, arr2);
+
+// 4) Frequency
+// const str1 = "aasdebasdf";
+// const str2 = "adfeebed";
+
+// const sameFrequency = (str1, str2) => {
+//   const arr1 = str1.split("");
+//   const arr2 = str2.split("");
+
+//   let counter1 = {};
+//   let counter2 = {};
+
+//   if (arr1.length !== arr2.length) return false;
+
+//   for (let i = 0; i < arr1.length; i++) {
+//     if (!counter1[arr1[i]]) {
+//       counter1[arr1[i]] = 1;
+//     } else {
+//       counter1[arr1[i]]++;
+//     }
+//   }
+
+//   for (let j = 0; j < arr2.length; j++) {
+//     if (!counter2[arr2[j]]) {
+//       counter2[arr2[j]] = 1;
+//     } else {
+//       counter2[arr2[j]]++;
+//     }
+//   }
+
+//   for (let prop in counter1) {
+//     if (!counter2[prop] || counter1[prop] !== counter2[prop]) return false;
+//   }
+
+//   return true;
+// };
+
+// console.log(sameFrequency(str1, str2));
+
+// 5) Average Pair
+// const arr = [-11, 0, 1, 2, 3, 9, 14, 17, 21];
+// const avg = 1.5;
+
+// const averagePair = (arr, avg) => {
+//   let result = [];
+
+//   for (let i = 0; i < arr.length - 1; i++) {
+//     for (let j = i + 1; j < arr.length; j++) {
+//       if ((arr[i] + arr[j]) / 2 === avg) result.push([arr[i], arr[j]]);
+//     }
+//   }
+
+//   return result;
+// };
+
+// // O(n^2)
+// console.log(averagePair(arr, avg));
+
+// 5) Average Pair(by pointer)
+const arr = [-11, 0, 1, 2, 3, 9, 14, 17, 21];
+const avg = 1.5;
+
+const averagePair = (arr, avg) => {
+  let left = 0;
+  let right = arr.length - 1;
+  let result = [];
+
+  while (right > left) {
+    let temp_avg = (arr[left] + arr[right]) / 2;
+    if (temp_avg > avg) right--;
+    if (temp_avg < avg) left++;
+    if (temp_avg === avg) {
+      result.push([arr[left], arr[right]]);
+      left++;
+      right--;
     }
   }
 
-  console.log(`Can't find ${n}`);
-  return -1;
+  return result;
 };
 
-binarySearch(numbers, 213);
+// O(n)
+console.log(averagePair(arr, avg));
