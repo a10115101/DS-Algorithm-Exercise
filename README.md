@@ -3,3 +3,6 @@
 3. Intersection
 4. Frequency
 5. Average Pair
+6. Palindrome
+7. Subsequence
+8. Sliding Window

@@ -162,27 +162,105 @@
 // console.log(averagePair(arr, avg));
 
 // 5) Average Pair(by pointer)
-const arr = [-11, 0, 1, 2, 3, 9, 14, 17, 21];
-const avg = 1.5;
+// const arr = [-11, 0, 1, 2, 3, 9, 14, 17, 21];
+// const avg = 1.5;
 
-const averagePair = (arr, avg) => {
-  let left = 0;
-  let right = arr.length - 1;
-  let result = [];
+// const averagePair = (arr, avg) => {
+//   let left = 0;
+//   let right = arr.length - 1;
+//   let result = [];
 
-  while (right > left) {
-    let temp_avg = (arr[left] + arr[right]) / 2;
-    if (temp_avg > avg) right--;
-    if (temp_avg < avg) left++;
-    if (temp_avg === avg) {
-      result.push([arr[left], arr[right]]);
-      left++;
-      right--;
+//   while (right > left) {
+//     let temp_avg = (arr[left] + arr[right]) / 2;
+//     if (temp_avg > avg) right--;
+//     if (temp_avg < avg) left++;
+//     if (temp_avg === avg) {
+//       result.push([arr[left], arr[right]]);
+//       left++;
+//       right--;
+//     }
+//   }
+
+//   return result;
+// };
+
+// // O(n)
+// console.log(averagePair(arr, avg));
+
+// 6) Palindrome (by pointer)
+// const str = "foobar";
+// const str = "tacocat"; // true
+// const str = "amanaplanacanalpanama"; // true
+
+// const isPalindrome = (str) => {
+//   let left = 0;
+//   let right = str.length - 1;
+
+//   while (right >= left) {
+//     console.log(str[left], str[right]);
+//     if (str[left] === str[right]) {
+//       left++;
+//       right--;
+//     } else {
+//       return false;
+//     }
+//   }
+
+//   return true;
+// };
+
+// console.log(isPalindrome(str));
+
+// 7) Subsequence (by pointer)
+// const str1 = "abc";
+// const str2 = "bac";
+// const str1 = "abc";
+// const str2 = "abc";
+// const str1 = "";
+// const str2 = "abc";
+// const str1 = "book";
+// const str2 = "brooklyn";
+
+// const isSubsequence = (str1, str2) => {
+//   let pointer1 = 0;
+//   let pointer2 = 0;
+
+//   if (str1.length === 0) return true;
+
+//   while (pointer2 < str2.length) {
+//     if (str1[pointer1] === str2[pointer2]) pointer1++;
+//     if (pointer1 >= str1.length) return true;
+//     pointer2++;
+//   }
+
+//   return false;
+// };
+
+// console.log(isSubsequence(str1, str2));
+
+// 8) Sliding Window
+const arr = [2, 7, 3, 0, 6, 1, -5, -12, -11];
+const size = 3;
+
+const sum = (mode, arr, size) => {
+  let max = -Infinity;
+  let min = Infinity;
+
+  if (size > arr.length) return null;
+
+  for (let i = 0; i <= arr.length - size; i++) {
+    let attemp = 0;
+    for (let j = i; j < i + size; j++) {
+      // console.log(i, j);
+      attemp += arr[j];
     }
+    if (mode === "max" && attemp > max) max = attemp;
+    if (mode === "min" && attemp < min) min = attemp;
   }
 
-  return result;
+  if (mode === "max") return max;
+  if (mode === "min") return min;
 };
 
-// O(n)
-console.log(averagePair(arr, avg));
+console.log(sum("max", arr, size));
+console.log(sum("min", arr, size));
